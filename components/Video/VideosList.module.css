@@ -1,0 +1,19 @@
+.list ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.list li {
+  flex: 0 0 20%;
+  flex-flow: left;
+  margin-bottom: 2%;
+  margin-right: 5%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.list li img {
+  width: 100%;
+  height: 200px; /* olmasa da olur*/
+}

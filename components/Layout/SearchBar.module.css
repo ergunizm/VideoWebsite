@@ -1,0 +1,19 @@
+.form input[type="search"] {
+  border: solid 3px #fff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  color: cyan;
+  height: 2rem;
+  outline: solid #fc0 0;
+  transition: all 1s ease-out;
+  width: 20rem;
+}
+
+.form input[type="search"]:focus {
+  border: solid 3px rgb(166, 20, 224);
+}
+
+.form input[type="search"]::placeholder {
+  color: cyan;
+}

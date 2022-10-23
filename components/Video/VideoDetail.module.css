@@ -1,0 +1,45 @@
+.detail {
+  justify-content: center;
+}
+
+.detail img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.icons {
+  display: flex;
+  margin-bottom: 1%;
+  margin-top: 0, 8%;
+}
+
+.icons button {
+  margin-left: 5%;
+  background-color: rgb(166, 20, 224);
+  border: none;
+  cursor: pointer;
+  margin-right: 5%;
+}
+
+.icons button:nth-child(2) {
+  margin-left: 65%;
+}
+
+.removePost {
+  display: block;
+  text-align: center;
+  margin-bottom: 2%;
+  background-color: yellow;
+  color: black;
+}
+
+.shareAlert {
+  font-size: small;
+  display: inline-block;
+  text-align: center;
+  border-radius: 3px;
+  margin-left: 74%;
+  width: 130px;
+  background-color: aliceblue;
+}
