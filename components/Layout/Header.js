@@ -3,10 +3,31 @@ import Link from "next/link";
 
 import SearchBar from "./SearchBar";
 import { useRouter } from "next/router";
+import { Toggle } from "../../styles/Icons";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [mobile, setMobile] = useState(false);
+  const [show, setShow] = useState(false);
   const router = useRouter();
   const isLoggedIn = true;
+  const widthStatus = `${useWindowSize() > 900 ? 0 : 1}`;
+
+  useEffect(() => {
+    setMobile(Boolean(Number(widthStatus)));
+    if (!mobile) {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+  }, [widthStatus]);
+
+  const showBar = () => {
+    console.log(1);
+    if (mobile) {
+      setShow(!show);
+    }
+  };
 
   return (
     <div className={styles.header}>
@@ -15,12 +36,17 @@ const Header = () => {
           <Link href="/">
             <a className={styles.inactive}>Logo here</a>
           </Link>
+          {mobile && (
+            <span className={styles.toggle} onClick={showBar}>
+              <Toggle />
+            </span>
+          )}
         </li>
-        <li className={styles.search}>
+        <li className={`${styles.search} ${!show ? "nodisp" : ""}`}>
           <SearchBar />
         </li>
         {isLoggedIn && (
-          <li>
+          <li className={!show ? "nodisp" : ""}>
             <Link href="/favorites">
               <a
                 className={
@@ -35,7 +61,7 @@ const Header = () => {
           </li>
         )}
         {!isLoggedIn && (
-          <li>
+          <li className={!show ? "nodisp" : ""}>
             <Link href="/login">
               <a
                 className={
@@ -50,7 +76,7 @@ const Header = () => {
           </li>
         )}
         {isLoggedIn && (
-          <li>
+          <li className={!show ? "nodisp" : ""}>
             <Link href="/">
               <a className={styles.inactive}>Log out</a>
             </Link>
@@ -60,5 +86,23 @@ const Header = () => {
     </div>
   );
 };
+
+// Hook for mobile
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState(undefined);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      function handleResize() {
+        setWindowSize(window.innerWidth);
+      }
+      window.addEventListener("resize", handleResize);
+      handleResize();
+
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+  return windowSize;
+}
 
 export default Header;

@@ -34,3 +34,44 @@
   text-underline-offset: 50%;
   text-decoration-thickness: 5px;
 }
+
+@media screen and (max-width: 900px) {
+  .header {
+    background-color: purple;
+    padding: 1% 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .header ul {
+    margin-left: 5%;
+    display: block;
+    list-style: none;
+  }
+
+  .header li {
+    text-decoration: none;
+    color: cyan;
+    margin-bottom: 1%;
+  }
+
+  .logo {
+    margin-right: 5%;
+  }
+
+  .inactive {
+    text-decoration: none;
+    color: cyan;
+  }
+
+  .active {
+    color: red;
+    text-decoration: underline;
+    text-underline-offset: 30%;
+    text-decoration-thickness: 3px;
+  }
+
+  .toggle {
+    float: right;
+  }
+}

@@ -17,3 +17,7 @@ body {
 .hidden {
   visibility: hidden;
 }
+
+.nodisp {
+  display: none;
+}
