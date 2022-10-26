@@ -5,17 +5,17 @@ import Card from "../UI/Card";
 import { Bookmark } from "../../styles/Icons";
 import { Share } from "../../styles/Icons";
 import { Download } from "../../styles/Icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const VideoDetail = (props) => {
-  const router = useRouter();
   const [classesOfShare, setClassesOfShare] = useState(
     `${(styles.shareAlert, "hidden")}`
   );
 
   const shareHandler = (e) => {
     e.preventDefault();
-    navigator.clipboard.writeText("localhost:3000" + router.asPath);
+
+    navigator.clipboard.writeText(window.location.href);
     setClassesOfShare(`${styles.shareAlert}`);
     setTimeout(() => {
       setClassesOfShare(`${(styles.shareAlert, "hidden")}`);
