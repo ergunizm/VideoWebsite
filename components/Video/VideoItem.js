@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const VideoItem = (props) => {
   const router = useRouter();
@@ -10,11 +11,24 @@ const VideoItem = (props) => {
     router.push("/" + props.id);
   };
 
+  const myLoader = ({ src, width, quality }) => {
+    return `${props.img}`;
+  };
+
   //img üstüne <Link>
   //div içinde desc üstüne link
   return (
     <li onClick={goDetailPage}>
-      <img src={props.img} alt={props.title}></img>
+      <Image
+        loader={myLoader}
+        src={props.img}
+        alt={props.title}
+        width={200}
+        height={200}
+        placeholder="blur"
+        priority
+      />
+      {/* <img src={props.img} alt={props.title} /> */}
       <div>
         <h3>{title}</h3>
         {/*buraya yıldız olayını ekle*/}
