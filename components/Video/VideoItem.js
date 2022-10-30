@@ -23,12 +23,11 @@ const VideoItem = (props) => {
         loader={myLoader}
         src={props.img}
         alt={props.title}
-        width={200}
-        height={200}
         placeholder="blur"
         priority
+        width="auto"
+        height="100%"
       />
-      {/* <img src={props.img} alt={props.title} /> */}
       <div>
         <h3>{title}</h3>
         {/*buraya yıldız olayını ekle*/}
