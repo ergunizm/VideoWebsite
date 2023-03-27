@@ -2,7 +2,7 @@ A nextjs Video Website project by Ergun Izmirlioglu
 
 Here's the demo app of v1 => videostemp.netlify.app
 
-Nextjs v13, React v18, react-redux v8, next-redux-wrapper v8, next-auth v4 is used in this project.
+Nextjs v13, React v18, react-redux v8, next-redux-wrapper v8, next-auth v4 are used in this project.
 
 
 
