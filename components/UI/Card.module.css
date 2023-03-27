@@ -1,4 +1,11 @@
 .card {
   margin: 2% 5%;
-  background-color: rgb(166, 20, 224);
+  padding: 1% 2%;
+  border-radius: 1px;
+  background: rgb(172, 172, 23);
+  background: radial-gradient(
+    circle,
+    rgba(172, 172, 23, 1) 70%,
+    rgba(58, 58, 62, 1) 100%
+  );
 }

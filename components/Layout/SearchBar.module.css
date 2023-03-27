@@ -3,17 +3,17 @@
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 1rem;
-  color: cyan;
+  color: rgb(157, 157, 44);
   height: 2rem;
-  outline: solid #fc0 0;
+  outline: solid #fc00;
   transition: all 1s ease-out;
   width: 20rem;
 }
 
 .form input[type="search"]:focus {
-  border: solid 3px rgb(166, 20, 224);
+  border: solid 3px #555500;
 }
 
 .form input[type="search"]::placeholder {
-  color: cyan;
+  color: rgb(157, 157, 44);
 }

@@ -8,25 +8,22 @@ const VideoItem = (props) => {
     props.title.length > 30 ? props.title.slice(0, 27) + "..." : props.title;
 
   const goDetailPage = () => {
-    router.push("/" + props.id);
+    router.push("/videos/" + props.id);
   };
 
   const myLoader = ({ src, width, quality }) => {
     return `${props.img}`;
   };
 
-  //img üstüne <Link>
-  //div içinde desc üstüne link
   return (
     <li onClick={goDetailPage}>
       <Image
         loader={myLoader}
         src={props.img}
         alt={props.title}
-        placeholder="blur"
         priority
-        width="auto"
-        height="100%"
+        width="50"
+        height="50"
       />
       <div>
         <h3>{title}</h3>

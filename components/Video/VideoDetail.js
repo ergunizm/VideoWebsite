@@ -1,16 +1,19 @@
 import styles from "./VideoDetail.module.css";
 
-import { useRouter } from "next/router";
 import Card from "../UI/Card";
 import { Bookmark } from "../../styles/Icons";
 import { Share } from "../../styles/Icons";
 import { Download } from "../../styles/Icons";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 const VideoDetail = (props) => {
+  const [bookmarkedVideo, setBookmarkedVideo] = useState(false);
   const [classesOfShare, setClassesOfShare] = useState(
     `${(styles.shareAlert, "hidden")}`
   );
+  const session = useSession();
+  const isLoggedIn = session.data ? true : false;
 
   const shareHandler = (e) => {
     e.preventDefault();
@@ -21,18 +24,39 @@ const VideoDetail = (props) => {
       setClassesOfShare(`${(styles.shareAlert, "hidden")}`);
     }, 1000);
   };
+
+  const bookmarkVideo = async () => {
+    if (!isLoggedIn) {
+      return;
+    }
+    if (bookmarkedVideo) {
+      setBookmarkedVideo(false);
+      await fetch("http://localhost:8080/users/fav", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(props.id),
+      });
+    } else {
+      setBookmarkedVideo(true);
+      await fetch("http://localhost:8080/users/fav", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(props.id),
+      });
+    }
+  };
   return (
     <Card className={styles.detail}>
       <a href="mailto: abc@example.com" className={styles.removePost}>
-        Bu videoyu kaldırtmak için tıklayınız...
+        Click here to remove this video...
       </a>
-      <img src={props.image} alt={props.title} />
+      <iframe allowFullScreen="true" src={props.url} alt={props.title} />
       <h1>{props.title}</h1>
       <span className={classesOfShare}>Copied to clipboard</span>
       <div className={styles.icons}>
-        <button>
-          <span>
-            <Bookmark />
+        <button onClick={bookmarkVideo}>
+          <span className={isLoggedIn ? "" : styles.hovertext}>
+            <Bookmark bookmarked={bookmarkedVideo} />
           </span>
         </button>
 
@@ -53,9 +77,3 @@ const VideoDetail = (props) => {
 };
 
 export default VideoDetail;
-
-/*
-<video width="320" height="240" controls>
-        <source src="videolinki" type="video/mp4"></source>
-      </video>
-*/

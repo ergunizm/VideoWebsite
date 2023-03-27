@@ -5,13 +5,17 @@ import SearchBar from "./SearchBar";
 import { useRouter } from "next/router";
 import { Toggle } from "../../styles/Icons";
 import { useEffect, useState } from "react";
+import { signOut, useSession } from "next-auth/react";
 
 const Header = () => {
   const [mobile, setMobile] = useState(false);
   const [show, setShow] = useState(false);
   const router = useRouter();
-  const isLoggedIn = true;
   const widthStatus = `${useWindowSize() > 900 ? 0 : 1}`;
+
+  const session = useSession();
+  const isLoggedIn = session.data ? true : false;
+  const id = session.data ? session.data.user.id : -1;
 
   useEffect(() => {
     setMobile(Boolean(Number(widthStatus)));
@@ -23,7 +27,6 @@ const Header = () => {
   }, [widthStatus]);
 
   const showBar = () => {
-    console.log(1);
     if (mobile) {
       setShow(!show);
     }
@@ -33,8 +36,12 @@ const Header = () => {
     <div className={styles.header}>
       <ul>
         <li className={styles.logo}>
-          <Link href="/">
-            <a className={styles.inactive}>Logo here</a>
+          <Link legacyBehavior href="/">
+            <img
+              src="/logo.png"
+              alt="Morningstar"
+              className={styles.inactive}
+            />
           </Link>
           {mobile && (
             <span className={styles.toggle} onClick={showBar}>
@@ -47,7 +54,7 @@ const Header = () => {
         </li>
         {isLoggedIn && (
           <li className={!show ? "nodisp" : ""}>
-            <Link href="/favorites">
+            <Link legacyBehavior href={"/favorites/" + id}>
               <a
                 className={
                   router.pathname == "/favorites"
@@ -55,14 +62,14 @@ const Header = () => {
                     : `${styles.inactive}`
                 }
               >
-                Favorites(0)
+                Favorites
               </a>
             </Link>
           </li>
         )}
         {!isLoggedIn && (
           <li className={!show ? "nodisp" : ""}>
-            <Link href="/login">
+            <Link legacyBehavior href="/login">
               <a
                 className={
                   router.pathname == "/login"
@@ -77,9 +84,15 @@ const Header = () => {
         )}
         {isLoggedIn && (
           <li className={!show ? "nodisp" : ""}>
-            <Link href="/">
-              <a className={styles.inactive}>Log out</a>
-            </Link>
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                signOut();
+              }}
+              className={styles.inactive}
+            >
+              Log out
+            </a>
           </li>
         )}
       </ul>

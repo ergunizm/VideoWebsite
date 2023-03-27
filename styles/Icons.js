@@ -1,7 +1,8 @@
 import style from "./Icons.module.css";
 
-export const Bookmark = () => (
+export const Bookmark = (props) => (
   <svg
+    fill={props.bookmarked ? "#ff9900" : "#555500"}
     version="1.1"
     id="Capa_1"
     xml="http://www.w3.org/2000/svg"
@@ -19,7 +20,7 @@ export const Bookmark = () => (
 
 export const Share = () => (
   <svg
-    fill="#000000"
+    fill="#555500"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 30 30"
     x="0px"
@@ -33,6 +34,7 @@ export const Share = () => (
 
 export const Download = () => (
   <svg
+    fill="#555500"
     version="1.1"
     id="Capa_1"
     xmlns="http://www.w3.org/2000/svg"

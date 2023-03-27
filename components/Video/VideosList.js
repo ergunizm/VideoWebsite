@@ -43,7 +43,7 @@ const VideosList = (props) => {
     <Card className={styles.list}>
       <ul>
         {selectedData.map((p) => (
-          <VideoItem key={p.id} id={p.id} img={p.images[0]} title={p.title} />
+          <VideoItem key={p.id} id={p.id} img={p.imgUrl} title={p.title} />
         ))}
       </ul>
       <div ref={screenRef} className="centered">

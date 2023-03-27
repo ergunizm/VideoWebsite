@@ -5,16 +5,20 @@ import Header from "../components/Layout/Header";
 
 import { useSelector, useStore } from "react-redux";
 import { fetchVideos, selectAll, wrapper } from "../redux/index";
+import { useSession } from "next-auth/react";
 
 export default function Home(props) {
   console.log("State on render2", useStore().getState(), props);
-  const { products: videos } = useSelector(selectAll());
+  const videos = useSelector(selectAll());
+
+  const session = useSession();
+  console.log(session.data);
 
   return (
     <Fragment>
       <Head>
         <title>My App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.ico" />
       </Head>
       <Header />
       <VideosList videos={videos || []} />
