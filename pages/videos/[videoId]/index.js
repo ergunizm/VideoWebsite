@@ -13,7 +13,12 @@ const VideoDetails = (props) => {
   return (
     <Fragment>
       <Head>
-        <title>My App</title>
+        <title>{singleVideo.title}</title>
+        <meta name="description" content={singleVideo.description}></meta>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
         <link rel="icon" href="/logo.ico" />
       </Head>
       <Header />

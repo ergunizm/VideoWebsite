@@ -14,7 +14,11 @@ export default function Login() {
   return (
     <Fragment>
       <Head>
-        <title>My App</title>
+        <title>Login</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
         <link rel="icon" href="/logo.ico" />
       </Head>
       <Header />
