@@ -42,6 +42,11 @@ const VideosList = (props) => {
   return (
     <Card className={styles.list}>
       <ul>
+        {selectedData.length == 0 && (
+          <div className={styles.nomatch}>
+            <p>No content matched for your entry.</p>
+          </div>
+        )}
         {selectedData.map((p) => (
           <VideoItem key={p.id} id={p.id} img={p.imgUrl} title={p.title} />
         ))}
